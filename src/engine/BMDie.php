@@ -1,5 +1,5 @@
 <?php
-require_once 'BMSkill.php';
+namespace ButtonWeavers\Engine;
 
 class BMDie
 {

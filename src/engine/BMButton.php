@@ -1,4 +1,5 @@
 <?php
+namespace ButtonWeavers\Engine;
 
 /**
  * BMButton: instantiated button as existing at the beginning of a round

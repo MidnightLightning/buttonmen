@@ -1,4 +1,5 @@
 <?php
+namespace ButtonWeavers\Engine;
 
 class BMSKill
 {
