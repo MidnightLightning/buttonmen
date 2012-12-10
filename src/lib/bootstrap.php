@@ -63,3 +63,13 @@ function autoload($name) {
 
 }
 spl_autoload_register('\ButtonWeavers\autoload'); // Register autoloader
+
+
+// Database setup
+if (isset($_SERVER["DB1_HOST"])) {
+	// Use Pagodabox live credentials
+	$db = new PDO('mysql:host='.$_SERVER["DB1_HOST"].';port='.$_SERVER["DB1_PORT"] .';dbname='.$_SERVER["DB1_NAME"], $_SERVER["DB1_USER"], $_SERVER["DB1_PASS"] );
+} else {
+	// Use development server credentials
+	$db = new PDO('mysql:host=localhost;dbname=buttonmen', 'root', 'root');
+}

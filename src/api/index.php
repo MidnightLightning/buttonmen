@@ -9,4 +9,4 @@
 define('APP_DIR', dirname(__DIR__));
 require_once(APP_DIR.'/lib/bootstrap.php');
 
-$d = new ButtonWeavers\Engine\BMDie();
+$d = new ButtonWeavers\Engine\BMDie(); // Test the autoloader is working
