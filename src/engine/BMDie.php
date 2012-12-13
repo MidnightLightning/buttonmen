@@ -62,24 +62,17 @@ class BMDie
     {
         // get the hooks for the calling function
 
-        foreach ($this->hookLists[$func] as $skill)
-        {
-            $skillClass = $this->skillList[$skill];
-
-            $skillClass::$func(&$args);
+        foreach ($this->hookLists[$func] as $skill) {
+            $s = $this->skillList[$skill];
+            $s->$func($args);
         }
     }
 
-    public function add_skill($skill)
-    {
-        $skillClass = "BMSkill$skill";
-
-        // Don't add skills that are already added
-        if (!$this->skillList[$skill]) {
-            $this->skillList[$skill] = $skillClass;
-
-            foreach ($skillClass::hooked_methods as $func) {
-                $hookLists[$func][] = $skillClass;
+    public function add_skill(BMSkill $skill) {
+        if (!isset($this->skillList[$skill->name])) {
+            $this->skillList[$skill->name] = $skill;
+            foreach($skill->hooked_methods as $func) {
+                $this->hookLists[$func][] = $skill->name;
             }
         }
     }
