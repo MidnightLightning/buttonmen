@@ -6,20 +6,31 @@
  * @author: Julian Lighton
  */
 
-class BMSKill
-{
-	
+class BMSkill {
+    protected static $instance = array();
+
+    private function __construct() {
+        // You can't instantiate me; I'm a Singleton!
+    }
+    
+    static function getInstance() {
+        $class = get_called_class();
+        if (!isset(static::$instance[$class])) {
+            echo $class."\n";
+            static::$instance[$class] = new $class;
+        }
+        return static::$instance[$class];
+    }
 }
 
 class BMSkillShadow extends BMSkill
 {
-	public static $name = "Shadow";
+	public $name = "Shadow";
+    public $abbrev = "s";
 
-    public static $abbrev = "s";
+    public $hooked_methods = array("attack_list");
 
-    public static $hooked_methods = array("attack_list");
-
-	public static function attack_list($args)
+	public function attack_list($args)
 	{
 		$list = &$args[0];
 
